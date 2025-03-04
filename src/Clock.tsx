@@ -5,18 +5,18 @@ interface ClockProps extends React.HTMLAttributes<HTMLDivElement> {}
 const Clock: React.FC<ClockProps> = ({ children, ...props }) => {
   const [time, setTime] = useState(new Date());
   const playSound = () => {
-    const audio = new Audio("/welcome.mp3");
+    const audio = new Audio("/notification.mp3");
     audio.play();
   };
 
   useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date();
-      //   if (now.getSeconds() === 0) {
-      //     console.log(now.getSeconds(), now.getMinutes(), now.getHours());
-      //     console.log("Play sound");
-      //     playSound();
-      //   }
+      if (now.getMinutes === 0 && now.getSeconds() === 0) {
+        console.log(now.getSeconds(), now.getMinutes(), now.getHours());
+        console.log("Play sound");
+        playSound();
+      }
       setTime(new Date());
     }, 1000);
 
@@ -35,8 +35,8 @@ const Clock: React.FC<ClockProps> = ({ children, ...props }) => {
 
   return (
     <div {...props}>
-      <div className="text-9xl font-bold">{formatTime(time)}</div>
-      <div className="text-6xl">{formatDate(time)}</div>{" "}
+      <div className="text-[160px] font-bold">{formatTime(time)}</div>
+      <div className="text-9xl">{formatDate(time)}</div>{" "}
       <div className="mt-16">{children}</div>
     </div>
   );
