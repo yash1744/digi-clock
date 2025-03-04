@@ -12,7 +12,7 @@ const Clock: React.FC<ClockProps> = ({ children, ...props }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date();
-      if (now.getMinutes === 0 && now.getSeconds() === 0) {
+      if (now.getMinutes() === 0 && now.getSeconds() === 0) {
         console.log(now.getSeconds(), now.getMinutes(), now.getHours());
         console.log("Play sound");
         playSound();
